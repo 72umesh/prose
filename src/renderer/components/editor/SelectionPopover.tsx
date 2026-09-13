@@ -224,6 +224,19 @@ export function SelectionPopover({ editor, onAddComment, onToggleLink }: Selecti
           >
             <Subscript className="h-4 w-4" />
           </Button>
+          <Button
+            size="sm"
+            className="h-8 px-2 shadow-md border"
+            variant={editor?.isActive('blockquote') ? 'default' : 'secondary'}
+            onMouseDown={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              editor?.chain().focus().toggleBlockquote().run()
+            }}
+            title="Blockquote"
+          >
+            <Quote className="h-4 w-4" />
+          </Button>
         </>
       )}
       <Button
@@ -239,20 +252,7 @@ export function SelectionPopover({ editor, onAddComment, onToggleLink }: Selecti
       >
         <Link className="h-4 w-4" />
       </Button>
-      
-      <Button
-        size="sm"
-        className="h-8 px-2 shadow-md border"
-        variant={editor?.isActive('blockquote') ? 'default' : 'secondary'}
-        onMouseDown={(e) => {
-          e.preventDefault()
-          e.stopPropagation()
-          editor?.chain().focus().toggleBlockquote().run()
-        }}
-        title="Blockquote"
-        >
-          <Quote className='h-4 w-4' />
-      </Button>
+    
       {!isNodeSelection && (
         <>
           <Button
